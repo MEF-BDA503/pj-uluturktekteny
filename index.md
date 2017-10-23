@@ -5,10 +5,8 @@
 + I have completed 20% of Udacity course, called "Data Analysis with R".
 + My group consists of four students.
 
-+[Yagmur Uluturk Tekten](https://mef-bda503.github.io/pj-uluturktekteny/)
-+[Semih Tekten](https://mef-bda503.github.io/pj-tektens/)
-+[Rezan Azizoglu](https://mef-bda503.github.io/pj-rezan/)
-+[Cem Gurkan](https://mef-bda503.github.io/pj-gurkanc/)
++ [Yagmur Uluturk Tekten](https://mef-bda503.github.io/pj-uluturktekteny/)
+2
 
 ## Week 2 (Oct 10)
 
