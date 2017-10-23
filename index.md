@@ -4,10 +4,11 @@
 ## Week 3 (Oct 23)
 + I have completed 20% of Udacity course, called "Data Analysis with R".
 + My group consists of four students.
-  [Yagmur Uluturk Tekten](https://github.com/MEF-BDA503/pj-uluturktekteny)
-  [Semih Tekten](https://github.com/MEF-BDA503/pj-tektens)
-  [Rezan Azizoglu](https://github.com/MEF-BDA503/pj-rezan)
-  [Cem Gurkan](https://github.com/MEF-BDA503/pj-gurkanc)
+
++[Yagmur Uluturk Tekten](https://mef-bda503.github.io/pj-uluturktekteny/)
++[Semih Tekten](https://mef-bda503.github.io/pj-tektens/)
++[Rezan Azizoglu](https://mef-bda503.github.io/pj-rezan/)
++[Cem Gurkan](https://mef-bda503.github.io/pj-gurkanc/)
 
 ## Week 2 (Oct 10)
 
