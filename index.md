@@ -1,5 +1,8 @@
 # The Progress Journal
 
+## Week 3 (Oct 24)
+
+I have finished HW_2. You can find it [here](files/laborsupply.html).
 
 ## Week 3 (Oct 23)
 + I have completed 20% of Udacity course, called "Data Analysis with R".
