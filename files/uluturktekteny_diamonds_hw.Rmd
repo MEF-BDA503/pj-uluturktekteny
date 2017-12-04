@@ -1,0 +1,146 @@
+---
+title: "Diamond Price Predictor"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+
+```{r include=TRUE}
+
+ #Set the random seed
+set.seed(503)
+# Install necessary packages
+
+library(tidyverse)
+library(rpart)
+library(rpart.plot)
+library(rattle)
+
+# Prepare test and train data set
+
+diamonds_test <- diamonds %>% mutate(diamond_id = row_number()) %>% 
+    group_by(cut, color, clarity) %>% sample_frac(0.2) %>% ungroup()
+
+diamonds_train <- anti_join(diamonds %>% mutate(diamond_id = row_number()), 
+    diamonds_test, by = "diamond_id")
+
+diamonds_train
+
+diamonds_test
+
+```
+
+Exploratory Analysis
+
+```{r include=TRUE}
+
+nrow(diamonds)
+ncol(diamonds)
+
+dim(diamonds_train)
+
+dim(diamonds_test)
+
+```
+
+```{r include=TRUE}
+
+summary(diamonds_train)
+summary(diamonds_test)
+
+```
+
+```{r include=TRUE}
+
+glimpse(diamonds_train)
+glimpse(diamonds_test)
+
+```
+
+```{r include=TRUE}
+
+str(diamonds_train)
+str(diamonds_test)
+
+
+```
+Let's see the statistical characteristics and  distribution of prices
+
+```{r include=TRUE}
+summary(diamonds$price)
+
+# Use histogram to see the distribution of price.
+# As you see price distribution is right - skewed, mean of price seems to be inflated by a small amount of high prices 
+
+ggplot(diamonds, aes(x = price)) + 
+  geom_histogram(fill = "blue", binwidth = 300) + 
+  scale_x_continuous(breaks = seq(0, 20000, 1000)) + 
+  theme(axis.text.x = element_text(angle = 90)) + 
+  xlab("Price") + ylab("Count")
+```
+
+```{r include=TRUE}
+
+# Prepare correlation data for pca analysis
+
+diamonds_train_pca_cor <- cor(diamonds_train%>%select(carat,depth, table,x,y,z))
+
+diamonds_train_pca_cor
+ 
+```
+
+```{r include=TRUE}
+
+# Run PCA 
+
+diamonds_train_pca_result<-princomp(diamonds_train%>%select(carat,depth, table,x,y,z),cor=T)
+
+# See the PCA results
+
+summary(diamonds_train_pca_result,loadings=TRUE)
+
+```
+```{r include=TRUE}
+
+# Run CART and try to improve the model with these extra properties.
+
+ rpart.control(
+        #minsplit = 20, #Min # of items that should be in a node to do a split
+        #minbucket = round(minsplit/3), #Minimum number of items in a final node
+        cp = 0.05, #Complexity parameter (min improvement to generate a split)
+        maxcompete = 4, #Not related to model. Some printout for analyses
+        maxsurrogate = 5, #Used to deal with missing values
+        usesurrogate = 2, #Used to deal with missing values
+        xval = 20, #Number of cross validations
+        surrogatestyle = 0, #Used to deal with missing values
+        maxdepth = 10 #Tree depth
+    )
+
+# Run CART and plot the model 
+diamondsprice_model <- rpart(price ~ ., data=diamonds_train %>% select(-diamond_id))
+fancyRpartPlot(diamondsprice_model)
+```
+
+```{r}
+
+# See in sample prediction results
+
+diamonds_predict <- predict(diamondsprice_model,newdata=diamonds_test %>% select(-diamond_id))
+
+str(diamonds_predict)
+
+# Compare the model predictions with the test data
+
+difference <- as.integer(diamonds_test$price) - as.integer(diamonds_predict)
+
+summary(difference)
+
+
+```
+
+
