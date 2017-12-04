@@ -3,6 +3,7 @@
 ## Week 6 (Dec.05)
 
 Assignments (Due Date Dec.05)
+
 I picked the diamonds data set and use some exploratory analysis in addition to CART method.
 
 + [Here](files/uluturktekteny_diamonds_hw.html) you can see my studies on diamonds data set.
