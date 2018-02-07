@@ -2,7 +2,7 @@
 
 ## Final Week (Jan.10)
 
-[Here] (files/final_yut.pdf) you can see my final examination.
+[Here](files/final_yut.pdf) you can see my final examination.
 
 ## Week 6 (Dec.05)
 
